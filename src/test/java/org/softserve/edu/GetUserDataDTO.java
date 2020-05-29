@@ -1,15 +1,13 @@
 package org.softserve.edu;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import org.softserve.edu.controllers.RequestURI;
 import org.softserve.edu.models.StatusCodes;
-import org.softserve.edu.models.UserDataDTO;
 import org.testng.annotations.*;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
@@ -68,6 +66,28 @@ public class GetUserDataDTO {
                 isEqualTo("Gwenborough");
 
     }
+
+    @Test(groups = "GET requests", testName = "count users in the response list GET /users")
+    public void countUsersInResponseList(){
+
+        ValidatableResponse getUserList =
+                given().
+                        get("/users").
+                then().
+                        statusCode(StatusCodes.OK);
+/*
+get /users response
+ */
+        Response getUsersListResponse = getUserList.
+                extract().
+                response();
+/*
+Get all users ids as a list and assert list is bigger than 5
+ */
+        List<Integer> ids = getUsersListResponse.jsonPath().getList("id");
+        assertThat(ids.size()).isGreaterThan(5);
+    }
+
     @AfterMethod
     public void afterRequest(Method method){
         String testName = method.getName();
