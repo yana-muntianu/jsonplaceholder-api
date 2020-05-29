@@ -3,12 +3,13 @@ package org.softserve.edu;
 import com.fasterxml.jackson.databind.*;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+import org.softserve.edu.controllers.RequestURI;
 import org.softserve.edu.models.UserDataDTO;
 import org.softserve.edu.models.StatusCodes;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 
 import static io.restassured.RestAssured.baseURI;
@@ -18,15 +19,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CreateUserDataDTO {
 
-    private static final String BASE_URI = "https://jsonplaceholder.typicode.com";
-
     @BeforeClass
     public void setup() {
-        baseURI = BASE_URI;
+        baseURI = RequestURI.BASE_URI;
     }
 
-    @Test
-    public void createNewUser() {
+    @BeforeMethod
+    public void beforeRequest(Method method){
+        String testName = method.getName();
+        System.out.println("Running method "+ testName);
+    }
+
+    @Test (groups = "POST requests", testName = "successful POST /users")
+    public void successfulCreateNewUser() {
 
         try {
 
@@ -112,6 +117,17 @@ public class CreateUserDataDTO {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @AfterMethod
+    public void afterRequest(Method method){
+        String testName = method.getName();
+        System.out.println("Finishing method "+ testName);
+    }
+
+    @AfterClass
+    public void cleanUp(){
+        System.out.println("All POST requests sent");
     }
 /*
     Create test User object with params
