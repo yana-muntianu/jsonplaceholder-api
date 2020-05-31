@@ -2,6 +2,7 @@ package org.softserve.edu;
 
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+
 import org.softserve.edu.controllers.RequestURI;
 import org.softserve.edu.models.StatusCodes;
 import org.testng.annotations.*;
@@ -9,17 +10,12 @@ import org.testng.annotations.*;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GetUserDataDTO {
 
-    @BeforeClass
-    public void setup() {
-        baseURI = RequestURI.BASE_URI;
-        System.out.println("Run tests for UpdateUserDataDTO.class");
-    }
+    // TODO implement before/after methods as a separate class with extension
 
     @BeforeMethod
     public void beforeRequest(Method method){
@@ -32,7 +28,7 @@ public class GetUserDataDTO {
 
         ValidatableResponse getUser =
                 given().
-                        get("/users/1").
+                        get(RequestURI.BASE_URI + "/users/1").
                 then().
                         statusCode(StatusCodes.OK).
                 log().all();
@@ -72,7 +68,7 @@ public class GetUserDataDTO {
 
         ValidatableResponse getUserList =
                 given().
-                        get("/users").
+                        get(RequestURI.BASE_URI + "/users").
                 then().
                         statusCode(StatusCodes.OK);
 /*
