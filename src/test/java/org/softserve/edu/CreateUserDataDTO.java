@@ -12,17 +12,11 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 
-import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class CreateUserDataDTO {
-
-    @BeforeClass
-    public void setup() {
-        baseURI = RequestURI.BASE_URI;
-    }
 
     @BeforeMethod
     public void beforeRequest(Method method){
@@ -47,7 +41,7 @@ public class CreateUserDataDTO {
                             contentType("application/json").
                             body(jsonInString).
                     when().
-                            post("/users").
+                            post(RequestURI.BASE_URI + "/users").
                     then().
                             statusCode(StatusCodes.CREATED).
                             log().all();

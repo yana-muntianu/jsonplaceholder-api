@@ -1,8 +1,11 @@
 package org.softserve.edu;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+
 import org.softserve.edu.controllers.RequestURI;
 import org.softserve.edu.models.StatusCodes;
 import org.softserve.edu.models.UserDataDTO;
@@ -13,18 +16,10 @@ import java.lang.reflect.Method;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
-import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UpdateUserDataDTO {
-
-
-    @BeforeClass
-    public void setup() {
-        baseURI = RequestURI.BASE_URI;
-        System.out.println("Run tests for UpdateUserDataDTO.class");
-    }
 
     @BeforeMethod
     public void beforeRequest(Method method){
@@ -49,7 +44,7 @@ public class UpdateUserDataDTO {
                             contentType("application/json").
                             body(jsonInString).
                     when().
-                            put("/users/9").
+                            put(RequestURI.BASE_URI + "/users/9").
                     then().
                             statusCode(StatusCodes.OK).
                             log().all();
@@ -137,7 +132,7 @@ public class UpdateUserDataDTO {
                             contentType("application/json").
                             body(jsonInString).
                     when().
-                            put("/users/18").
+                            put(RequestURI.BASE_URI + "/users/18").
                     then().
                             statusCode(StatusCodes.NOT_FOUND).
                     log().all();
