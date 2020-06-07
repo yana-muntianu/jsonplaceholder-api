@@ -1,11 +1,11 @@
 package org.softserve.edu;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.softserve.edu.controllers.RequestURI;
 import org.softserve.edu.models.StatusCodes;
 import org.softserve.edu.models.UserDataDTO;
@@ -21,10 +21,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class UpdateUserDataDTO {
 
+    private static final Logger LOG = LogManager.getLogger(GetUserDataDTO.class.getName());
+
     @BeforeMethod
     public void beforeRequest(Method method){
         String testName = method.getName();
-        System.out.println("Running method "+ testName);
+        LOG.info("Running method "+ testName);
     }
 
     @Test (groups = "PUT requests", testName = "successful PUT /users/user_id")
@@ -46,8 +48,7 @@ public class UpdateUserDataDTO {
                     when().
                             put(RequestURI.BASE_URI + "/users/9").
                     then().
-                            statusCode(StatusCodes.OK).
-                            log().all();
+                            statusCode(StatusCodes.OK);
 /*
     Extract the response body
  */
@@ -112,6 +113,7 @@ public class UpdateUserDataDTO {
                     isEqualTo(updatedUserData.getCompany());
 
         } catch (IOException e) {
+            LOG.error(e);
             e.printStackTrace();
         }
     }
@@ -138,6 +140,7 @@ public class UpdateUserDataDTO {
                     log().all();
 
         }catch (IOException e) {
+            LOG.error(e);
             e.printStackTrace();
         }
     }
@@ -145,12 +148,12 @@ public class UpdateUserDataDTO {
     @AfterMethod
     public void afterRequest(Method method){
         String testName = method.getName();
-        System.out.println("Finishing method "+ testName);
+        LOG.info("Finishing method "+ testName);
     }
 
     @AfterClass
     public void cleanUp(){
-        System.out.println("All PUT requests sent");
+        LOG.info("All PUT requests sent");
     }
 
 /*

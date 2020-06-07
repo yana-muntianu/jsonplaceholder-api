@@ -3,6 +3,8 @@ package org.softserve.edu;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.softserve.edu.controllers.RequestURI;
 import org.softserve.edu.models.StatusCodes;
 import org.testng.annotations.*;
@@ -15,12 +17,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GetUserDataDTO {
 
+    private static final Logger LOG = LogManager.getLogger(GetUserDataDTO.class.getName());
+
     // TODO implement before/after methods as a separate class with extension
 
     @BeforeMethod
     public void beforeRequest(Method method){
         String testName = method.getName();
-        System.out.println("Running method "+ testName);
+        LOG.info("Running method "+ testName);
     }
 
     @Test(groups = "GET requests", testName = "successful GET /users/user_id")
@@ -30,8 +34,7 @@ public class GetUserDataDTO {
                 given().
                         get(RequestURI.BASE_URI + "/users/1").
                 then().
-                        statusCode(StatusCodes.OK).
-                log().all();
+                        statusCode(StatusCodes.OK);
 
         Response getUserResponse = getUser.
                 extract().
@@ -87,11 +90,11 @@ Get all users ids as a list and assert list is bigger than 5
     @AfterMethod
     public void afterRequest(Method method){
         String testName = method.getName();
-        System.out.println("Finishing method "+ testName);
+        LOG.info("Finishing method "+ testName);
     }
 
     @AfterClass
     public void cleanUp(){
-        System.out.println("All GET requests sent");
+        LOG.info("All GET requests sent");
     }
 }

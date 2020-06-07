@@ -3,7 +3,9 @@ package org.softserve.edu;
 import com.fasterxml.jackson.databind.*;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import org.softserve.edu.controllers.RequestURI;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.softserve.edu.models.UserDataDTO;
 import org.softserve.edu.models.StatusCodes;
 import org.testng.annotations.*;
@@ -12,16 +14,18 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class CreateUserDataDTO {
 
+    private static final Logger LOG = LogManager.getLogger(GetUserDataDTO.class.getName());
+
     @BeforeMethod
     public void beforeRequest(Method method){
         String testName = method.getName();
-        System.out.println("Running method "+ testName);
+        LOG.info("Running method "+ testName);
     }
 
     @Test (groups = "POST requests", testName = "successful POST /users")
@@ -41,10 +45,9 @@ public class CreateUserDataDTO {
                             contentType("application/json").
                             body(jsonInString).
                     when().
-                            post(RequestURI.BASE_URI + "/users").
+                            post("/users").
                     then().
-                            statusCode(StatusCodes.CREATED).
-                            log().all();
+                            statusCode(StatusCodes.CREATED);
 /*
     Extract the response body
  */
@@ -109,6 +112,7 @@ public class CreateUserDataDTO {
                     isEqualTo(userForCreation.getCompany());
 
         } catch (IOException e) {
+            LOG.error(e);
             e.printStackTrace();
         }
     }
@@ -116,12 +120,12 @@ public class CreateUserDataDTO {
     @AfterMethod
     public void afterRequest(Method method){
         String testName = method.getName();
-        System.out.println("Finishing method "+ testName);
+        LOG.info("Finishing method "+ testName);
     }
 
     @AfterClass
     public void cleanUp(){
-        System.out.println("All POST requests sent");
+        LOG.info("All POST requests sent");
     }
 /*
     Create test User object with params
