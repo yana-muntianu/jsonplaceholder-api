@@ -4,35 +4,41 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 
 public class FileUtils {
 
     private static final Logger LOG = LogManager.getLogger(FileUtils.class.getName());
-    public String content;
+    private static File file;
 
-    public String readFile(String fileName) {
-
+    public File readJSONFile(String filePath) {
+/*
+Read JSON file using file path
+ */
         try {
-            File file = new File(
-                    FileUtils.class.getClassLoader().getResource(fileName).getFile()
-            );
-
-            //File is found
+            file = new File(filePath);
             LOG.info("File Found : " + file.exists());
 
-            //Read File Content
-            content = new String(Files.readAllBytes(file.toPath()));
-            System.out.println(content);
-
         }catch (Exception e){
-            LOG.error(e.getStackTrace());
+            LOG.error(e);
+            e.printStackTrace();
         }
-        return content;
+        return file;
     }
-    public static void main (String[] args){
-        String mvnFile = "maven.properties";
-        FileUtils fileUtils = new FileUtils();
-        fileUtils.readFile(mvnFile);
+/*
+convert JSON file to string
+ */
+    private void convertToString(){
+
+        try {
+            String content = new String(Files.readAllBytes(file.toPath()));
+            LOG.info(content);
+
+        }catch (IOException ioE){
+            LOG.error(ioE);
+            ioE.printStackTrace();
+        }
     }
+
 }
