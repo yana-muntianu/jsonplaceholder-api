@@ -18,9 +18,9 @@ import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class CreateUserDataDTO {
+public class TestCreateUser {
 
-    private static final Logger LOG = LogManager.getLogger(GetUserDataDTO.class.getName());
+    private static final Logger LOG = LogManager.getLogger(TestGetUser.class.getName());
 
     @BeforeMethod
     public void beforeRequest(Method method){
@@ -28,8 +28,8 @@ public class CreateUserDataDTO {
         LOG.info("Running method "+ testName);
     }
 
-    @Test (groups = "POST requests", testName = "successful POST /users")
-    public void successfulCreateNewUser() {
+    @Test (groups = "POST requests", testName = "REST: POST: Verify create new user with valid data ")
+    public void testCreateNewUserWithValidData() {
 
         try {
 
@@ -37,9 +37,7 @@ public class CreateUserDataDTO {
             UserDataDTO userForCreation = createUser();
 
             String jsonInString = mapper.writeValueAsString(userForCreation);
-/*
-    POST /users -> create new user with test data and log response
- */
+
             ValidatableResponse createNewUser =
                     given().
                             contentType("application/json").
@@ -48,64 +46,55 @@ public class CreateUserDataDTO {
                             post("/users").
                     then().
                             statusCode(StatusCodes.CREATED);
-/*
-    Extract the response body
- */
+
         Response createNewUserResponse = createNewUser.
                 extract().
                 response();
- /*
-    'name' field from the response body to string
-    Verify 'name' field from the response body and one from the User object
- */
+
+//    'name' field from the response body to string Verify 'name' field from the response body and one from the User object
+
         String responseName = createNewUserResponse.
                 path("name");
         assertThat(responseName).
                 isEqualTo(userForCreation.getName());
-/*
-    'username' field from the response body to string
-    Verify 'username' field from the response body and one from the User object
- */
+
+//    'username' field from the response body to string Verify 'username' field from the response body and one from the User object
+
             String responseUsername = createNewUserResponse.
                     path("username");
             assertThat(responseUsername).
                     isEqualTo(userForCreation.getUsername());
-/*
-    'email' field from the response body to string
-    Verify 'email' field from the response body and one from the User object
- */
+
+//    'email' field from the response body to string Verify 'email' field from the response body and one from the User object
+
             String responseEmail = createNewUserResponse.
                     path("email");
             assertThat(responseEmail).
                     isEqualTo(userForCreation.getEmail());
-/*
-    'phone' field from the response body to string
-    Verify 'phone' field from the response body and one from the User object
- */
+
+//    'phone' field from the response body to string Verify 'phone' field from the response body and one from the User object
+
             String responsePhone = createNewUserResponse.
                     path("phone");
             assertThat(responsePhone).
                     isEqualTo(userForCreation.getPhone());
-/*
-    'website' field from the response body to string
-    Verify 'website' field from the response body and one from the User object
- */
+
+//    'website' field from the response body to string Verify 'website' field from the response body and one from the User object
+
             String responseWebsite = createNewUserResponse.
                     path("website");
             assertThat(responseWebsite).
                     isEqualTo(userForCreation.getWebsite());
-/*
-    'address' field from the response body to string
-    Verify 'address' field from the response body and map from the User object
- */
+
+//    'address' field from the response body to string Verify 'address' field from the response body and map from the User object
+
             LinkedHashMap<String,Object> responseAddress = createNewUserResponse.
                     path("address");
             assertThat(responseAddress).
                     isEqualTo(userForCreation.getAddress());
-/*
-    'company' field from the response body to string
-    Verify 'address' field from the response body and map from the User object
- */
+
+//    'company' field from the response body to string Verify 'address' field from the response body and map from the User object
+
             LinkedHashMap<String,Object> responseCompany = createNewUserResponse.
                     path("company");
             assertThat(responseCompany).
@@ -127,9 +116,7 @@ public class CreateUserDataDTO {
     public void cleanUp(){
         LOG.info("All POST requests sent");
     }
-/*
-    Create test User object with params
- */
+
     private static UserDataDTO createUser(){
 
         UserDataDTO userForCreation = new UserDataDTO();

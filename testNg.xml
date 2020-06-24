@@ -10,7 +10,7 @@
             </run>
         </groups>
         <classes>
-            <class name = "org.softserve.edu.UpdateUserDataDTO">
+            <class name = "org.softserve.edu.TestUpdateUser">
             </class>
         </classes>
     </test>
@@ -21,7 +21,7 @@
             </run>
         </groups>
         <classes>
-            <class name = "org.softserve.edu.CreateUserDataDTO">
+            <class name = "org.softserve.edu.TestCreateUser">
             </class>
         </classes>
     </test>
@@ -32,7 +32,7 @@
             </run>
         </groups>
         <classes>
-            <class name = "org.softserve.edu.GetUserDataDTO">
+            <class name = "org.softserve.edu.TestGetUser">
             </class>
         </classes>
     </test>

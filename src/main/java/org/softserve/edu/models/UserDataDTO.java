@@ -1,6 +1,5 @@
 package org.softserve.edu.models;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 

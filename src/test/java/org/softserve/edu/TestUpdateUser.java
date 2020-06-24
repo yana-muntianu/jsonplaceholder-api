@@ -19,9 +19,9 @@ import java.util.LinkedHashMap;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UpdateUserDataDTO {
+public class TestUpdateUser {
 
-    private static final Logger LOG = LogManager.getLogger(GetUserDataDTO.class.getName());
+    private static final Logger LOG = LogManager.getLogger(TestGetUser.class.getName());
 
     @BeforeMethod
     public void beforeRequest(Method method){
@@ -29,8 +29,8 @@ public class UpdateUserDataDTO {
         LOG.info("Running method "+ testName);
     }
 
-    @Test (groups = "PUT requests", testName = "successful PUT /users/user_id")
-    public void successfulUserUpdate() {
+    @Test (groups = "PUT requests", testName = "REST: PUT: Verify update user with valid data by valid ID")
+    public void testUpdateUserWithValidData() {
 
         try {
 
@@ -38,9 +38,7 @@ public class UpdateUserDataDTO {
             UserDataDTO updatedUserData = updateUserData();
 
             String jsonInString = mapper.writeValueAsString(updatedUserData);
-/*
-    PUT /users/user_id -> update user with test data and log response
- */
+
             ValidatableResponse updateUser =
                     given().
                             contentType("application/json").
@@ -49,64 +47,55 @@ public class UpdateUserDataDTO {
                             put(RequestURI.BASE_URI + "/users/9").
                     then().
                             statusCode(StatusCodes.OK);
-/*
-    Extract the response body
- */
+
             Response updateUserResponse = updateUser.
                     extract().
                     response();
-/*
-    'name' field from the response body to string
-    Verify 'name' field from the response body and one from the User object
- */
+
+//    'name' field from the response body to string Verify 'name' field from the response body and one from the User object
+
             String responseName = updateUserResponse.
                     path("name");
             assertThat(responseName).
                     isEqualTo(updatedUserData.getName());
-/*
-    'username' field from the response body to string
-    Verify 'username' field from the response body and one from the User object
- */
+
+//    'username' field from the response body to string  Verify 'username' field from the response body and one from the User object
+
             String responseUsername = updateUserResponse.
                     path("username");
             assertThat(responseUsername).
                     isEqualTo(updatedUserData.getUsername());
-/*
-    'email' field from the response body to string
-    Verify 'email' field from the response body and one from the User object
- */
+
+//    'email' field from the response body to string Verify 'email' field from the response body and one from the User object
+
             String responseEmail = updateUserResponse.
                     path("email");
             assertThat(responseEmail).
                     isEqualTo(updatedUserData.getEmail());
-/*
-    'phone' field from the response body to string
-    Verify 'phone' field from the response body and one from the User object
- */
+
+//    'phone' field from the response body to string Verify 'phone' field from the response body and one from the User object
+
             String responsePhone = updateUserResponse.
                     path("phone");
             assertThat(responsePhone).
                     isEqualTo(updatedUserData.getPhone());
-/*
-    'website' field from the response body to string
-    Verify 'website' field from the response body and one from the User object
- */
+
+//    'website' field from the response body to string Verify 'website' field from the response body and one from the User object
+
             String responseWebsite = updateUserResponse.
                     path("website");
             assertThat(responseWebsite).
                     isEqualTo(updatedUserData.getWebsite());
-/*
-    'address' field from the response body to string
-    Verify 'address' field from the response body and map from the User object
- */
+
+//    'address' field from the response body to string Verify 'address' field from the response body and map from the User object
+
             LinkedHashMap<String,Object> responseAddress = updateUserResponse.
                     path("address");
             assertThat(responseAddress).
                     isEqualTo(updatedUserData.getAddress());
-/*
-    'company' field from the response body to string
-    Verify 'address' field from the response body and map from the User object
- */
+
+//    'company' field from the response body to string Verify 'address' field from the response body and map from the User object
+
             LinkedHashMap<String,Object> responseCompany = updateUserResponse.
                     path("company");
             assertThat(responseCompany).
@@ -118,17 +107,14 @@ public class UpdateUserDataDTO {
         }
     }
 
-    @Test (groups = "PUT requests", testName = "sent PUT /users/invalid_user_id")
-    public void updateUserWithInvalidID(){
+    @Test (groups = "PUT requests", testName = "REST: PUT: Verify update user with valid data by invalid ID")
+    public void testUpdateUserWithInvalidId(){
         try {
 
             ObjectMapper mapper = new ObjectMapper();
             UserDataDTO updatedUserData = updateUserData();
 
             String jsonInString = mapper.writeValueAsString(updatedUserData);
-/*
-    PUT /users/invalid_user_id -> update user with invalid id and verify Status Code
- */
 
                     given().
                             contentType("application/json").
@@ -156,9 +142,6 @@ public class UpdateUserDataDTO {
         LOG.info("All PUT requests sent");
     }
 
-/*
-    Create test User object with params
- */
     private static UserDataDTO updateUserData() {
 
         UserDataDTO updatedUserData = new UserDataDTO();
