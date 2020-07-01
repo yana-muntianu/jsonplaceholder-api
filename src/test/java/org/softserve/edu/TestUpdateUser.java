@@ -6,8 +6,9 @@ import io.restassured.response.ValidatableResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.softserve.edu.controllers.RequestURI;
+
 import org.softserve.edu.models.StatusCodes;
-import org.softserve.edu.models.UserDataDTO;
+import org.softserve.edu.testdata.placeholder.UserTestData;
 import org.softserve.edu.utils.ConverterDTO;
 import org.testng.annotations.*;
 
@@ -31,7 +32,7 @@ public class TestUpdateUser {
     @Test (groups = "PUT requests", testName = "REST: PUT: Verify update user with valid data by valid ID")
     public void testUpdateUserWithValidData() {
 
-            UserDataDTO updatedUserData = updateUserData();
+            UserTestData updatedUserData = new UserTestData();
 
             String jsonInString = ConverterDTO.dtoToJsonString(updatedUserData);
 
@@ -102,7 +103,7 @@ public class TestUpdateUser {
     @Test (groups = "PUT requests", testName = "REST: PUT: Verify update user with valid data by invalid ID")
     public void testUpdateUserWithInvalidId(){
 
-            UserDataDTO updatedUserData = updateUserData();
+            UserTestData updatedUserData = new UserTestData();
 
             String jsonInString = ConverterDTO.dtoToJsonString(updatedUserData);
 
@@ -126,32 +127,5 @@ public class TestUpdateUser {
     @AfterClass
     public void cleanUp(){
         LOG.info("All PUT requests sent");
-    }
-
-    private static UserDataDTO updateUserData() {
-
-        UserDataDTO updatedUserData = new UserDataDTO();
-
-        updatedUserData.setName("Mary");
-        updatedUserData.setUsername("maryleen");
-        updatedUserData.setEmail("mary-16@gmail.com");
-
-        LinkedHashMap<String, Object> userAddress = new LinkedHashMap<>();
-        userAddress.put("street", "Baseline");
-        userAddress.put("suite", "90");
-        userAddress.put("city", "Ottawa");
-        userAddress.put("zipcode", "CO3 KJ7");
-        updatedUserData.setAddress(userAddress);
-
-        updatedUserData.setPhone("123-639-091");
-        updatedUserData.setWebsite("maryleen.com");
-
-        LinkedHashMap<String, Object> userCompany = new LinkedHashMap<>();
-        userCompany.put("companyName", "Apple");
-        userCompany.put("catchPhrase", "catch phrase");
-        userCompany.put("bs", "don't even know");
-        updatedUserData.setCompany(userCompany);
-
-        return updatedUserData;
     }
 }
