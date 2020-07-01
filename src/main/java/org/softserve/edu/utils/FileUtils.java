@@ -12,10 +12,8 @@ public class FileUtils {
     private static final Logger LOG = LogManager.getLogger(FileUtils.class.getName());
     private static File file;
 
-    public File readJSONFile(String filePath) {
-/*
-Read JSON file using file path
- */
+    public static File readJSONFile(String filePath) {
+
         try {
             file = new File(filePath);
             LOG.info("File Found : " + file.exists());
@@ -26,10 +24,8 @@ Read JSON file using file path
         }
         return file;
     }
-/*
-convert JSON file to string
- */
-    private void convertToString(){
+
+    private static void convertToString(){
 
         try {
             String content = new String(Files.readAllBytes(file.toPath()));

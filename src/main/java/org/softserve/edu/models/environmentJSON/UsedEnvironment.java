@@ -1,7 +1,7 @@
 package org.softserve.edu.models.environmentJSON;
 
 //@JsonIgnoreProperties(ignoreUnknown = true)
-public class Environment {
+public class UsedEnvironment {
 
         private Placeholder jsonPlaceholder;
 

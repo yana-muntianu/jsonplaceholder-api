@@ -11,23 +11,25 @@ public class MavenPropertiesFileReader {
 
     private static final Logger LOG = LogManager.getLogger(FileUtils.class.getName());
 
-    public static void main(String[] args) {
+    public static String getMavenProperty(String propertyKey){
 
         try (InputStream inputStream = new FileInputStream("src/main/resources/maven.properties")) {
 
             Properties properties = new Properties();
-/*
-load property file from the resource
- */
+
+//load property file from the resource
+
             properties.load(inputStream);
-/*
-get certain property from the .properties file
- */
-            String environment = properties.getProperty("UsedEnvironment");
-            LOG.info("UsedEnvironment is " + environment);
+
+//get certain property from the .properties file
+
+            String mavenProperty = properties.getProperty(propertyKey);
+            LOG.info("UsedEnvironment is " + mavenProperty);
+            return mavenProperty;
 
         }catch (Exception e){
             LOG.error(e.getStackTrace());
+            return null;
         }
     }
 }

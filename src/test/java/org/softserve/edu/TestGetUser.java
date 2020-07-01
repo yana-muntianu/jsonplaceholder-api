@@ -15,9 +15,9 @@ import java.util.List;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GetUserDataDTO {
+public class TestGetUser {
 
-    private static final Logger LOG = LogManager.getLogger(GetUserDataDTO.class.getName());
+    private static final Logger LOG = LogManager.getLogger(TestGetUser.class.getName());
 
     // TODO implement before/after methods as a separate class with extension
 
@@ -27,8 +27,8 @@ public class GetUserDataDTO {
         LOG.info("Running method "+ testName);
     }
 
-    @Test(groups = "GET requests", testName = "successful GET /users/user_id")
-    public void getUserDataById() {
+    @Test(groups = "GET requests", testName = "REST: GET: Verify get user by valid ID")
+    public void testGetUserByValidId() {
 
         ValidatableResponse getUser =
                 given().
@@ -39,26 +39,24 @@ public class GetUserDataDTO {
         Response getUserResponse = getUser.
                 extract().
                 response();
-/*
-    'name' field from the response body to string
-    Verify 'name' field from the response body and test street given
- */
+
+//    'name' field from the response body to string Verify 'name' field from the response body and test street given
+
         String responseName = getUserResponse.
                 path("name");
         assertThat(responseName).
                 isEqualTo("Leanne Graham");
-/*
-    'username' field from the response body to string
-    Verify 'username' field from the response body and test street given
- */
+
+//    'username' field from the response body to string Verify 'username' field from the response body and test street given
+
         String responseUsername = getUserResponse.
                 path("username");
         assertThat(responseUsername).
                 isEqualTo("Bret");
-/*
-    'city' field from the response body to string
-    Verify 'city' field from the response body and test street given
- */
+
+//    'city' field from the response body to string Verify 'city' field from the response body and test street given
+
+
         String responseCity = getUserResponse.
                 path("address.city");
         assertThat(responseCity).
@@ -66,23 +64,21 @@ public class GetUserDataDTO {
 
     }
 
-    @Test(groups = "GET requests", testName = "count users in the response list GET /users")
-    public void countUsersInResponseList(){
+    @Test(groups = "GET requests", testName = "REST: GET: Verify list of users in response and count its length")
+    public void testCountUsersInResponseList(){
 
         ValidatableResponse getUserList =
                 given().
                         get(RequestURI.BASE_URI + "/users").
                 then().
                         statusCode(StatusCodes.OK);
-/*
-get /users response
- */
+
         Response getUsersListResponse = getUserList.
                 extract().
                 response();
-/*
-Get all users ids as a list and assert list is bigger than 5
- */
+
+//Get all users ids as a list and assert list is bigger than 5
+
         List<Integer> ids = getUsersListResponse.jsonPath().getList("id");
         assertThat(ids.size()).isGreaterThan(5);
     }
