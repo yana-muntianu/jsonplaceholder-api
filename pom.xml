@@ -74,6 +74,12 @@
             <version>${properties-maven-plugin.version}</version>
             <type>maven-plugin</type>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
