@@ -1,6 +1,5 @@
 package org.softserve.edu;
 
-import com.fasterxml.jackson.databind.*;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import org.apache.logging.log4j.LogManager;
@@ -8,9 +7,9 @@ import org.apache.logging.log4j.Logger;
 
 import org.softserve.edu.models.UserDataDTO;
 import org.softserve.edu.models.StatusCodes;
+import org.softserve.edu.utils.ConverterDTO;
 import org.testng.annotations.*;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 
@@ -31,12 +30,9 @@ public class TestCreateUser {
     @Test (groups = "POST requests", testName = "REST: POST: Verify create new user with valid data ")
     public void testCreateNewUserWithValidData() {
 
-        try {
-
-            ObjectMapper mapper = new ObjectMapper();
             UserDataDTO userForCreation = createUser();
 
-            String jsonInString = mapper.writeValueAsString(userForCreation);
+        String jsonInString = ConverterDTO.dtoToJsonString(userForCreation);
 
             ValidatableResponse createNewUser =
                     given().
@@ -100,10 +96,6 @@ public class TestCreateUser {
             assertThat(responseCompany).
                     isEqualTo(userForCreation.getCompany());
 
-        } catch (IOException e) {
-            LOG.error(e);
-            e.printStackTrace();
-        }
     }
 
     @AfterMethod

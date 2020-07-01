@@ -1,6 +1,5 @@
 package org.softserve.edu;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
@@ -9,11 +8,11 @@ import org.apache.logging.log4j.Logger;
 import org.softserve.edu.controllers.RequestURI;
 import org.softserve.edu.models.StatusCodes;
 import org.softserve.edu.models.UserDataDTO;
+import org.softserve.edu.utils.ConverterDTO;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 
 import static io.restassured.RestAssured.*;
@@ -32,12 +31,9 @@ public class TestUpdateUser {
     @Test (groups = "PUT requests", testName = "REST: PUT: Verify update user with valid data by valid ID")
     public void testUpdateUserWithValidData() {
 
-        try {
-
-            ObjectMapper mapper = new ObjectMapper();
             UserDataDTO updatedUserData = updateUserData();
 
-            String jsonInString = mapper.writeValueAsString(updatedUserData);
+            String jsonInString = ConverterDTO.dtoToJsonString(updatedUserData);
 
             ValidatableResponse updateUser =
                     given().
@@ -101,20 +97,14 @@ public class TestUpdateUser {
             assertThat(responseCompany).
                     isEqualTo(updatedUserData.getCompany());
 
-        } catch (IOException e) {
-            LOG.error(e);
-            e.printStackTrace();
-        }
     }
 
     @Test (groups = "PUT requests", testName = "REST: PUT: Verify update user with valid data by invalid ID")
     public void testUpdateUserWithInvalidId(){
-        try {
 
-            ObjectMapper mapper = new ObjectMapper();
             UserDataDTO updatedUserData = updateUserData();
 
-            String jsonInString = mapper.writeValueAsString(updatedUserData);
+            String jsonInString = ConverterDTO.dtoToJsonString(updatedUserData);
 
                     given().
                             contentType("application/json").
@@ -125,10 +115,6 @@ public class TestUpdateUser {
                             statusCode(StatusCodes.NOT_FOUND).
                     log().all();
 
-        }catch (IOException e) {
-            LOG.error(e);
-            e.printStackTrace();
-        }
     }
 
     @AfterMethod
