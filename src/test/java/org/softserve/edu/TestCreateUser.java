@@ -5,8 +5,8 @@ import io.restassured.response.ValidatableResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import org.softserve.edu.models.UserDataDTO;
 import org.softserve.edu.models.StatusCodes;
+import org.softserve.edu.testdata.placeholder.UserTestData;
 import org.softserve.edu.utils.ConverterDTO;
 import org.testng.annotations.*;
 
@@ -30,7 +30,7 @@ public class TestCreateUser {
     @Test (groups = "POST requests", testName = "REST: POST: Verify create new user with valid data ")
     public void testCreateNewUserWithValidData() {
 
-            UserDataDTO userForCreation = createUser();
+        UserTestData userForCreation = new UserTestData();
 
         String jsonInString = ConverterDTO.dtoToJsonString(userForCreation);
 
@@ -107,32 +107,5 @@ public class TestCreateUser {
     @AfterClass
     public void cleanUp(){
         LOG.info("All POST requests sent");
-    }
-
-    private static UserDataDTO createUser(){
-
-        UserDataDTO userForCreation = new UserDataDTO();
-
-        userForCreation.setName("Jack");
-        userForCreation.setUsername("jackson");
-        userForCreation.setEmail("jack-3000@gmail.com");
-
-        LinkedHashMap<String,Object> userAddress = new LinkedHashMap<>();
-        userAddress.put("street", "St. John");
-        userAddress.put("suite", "563");
-        userAddress.put("city", "Texas");
-        userAddress.put("zipcode", "679HN1");
-        userForCreation.setAddress(userAddress);
-
-        userForCreation.setPhone("345-678-908");
-        userForCreation.setWebsite("jack-3000.com");
-
-        LinkedHashMap<String,Object> userCompany = new LinkedHashMap<>();
-        userCompany.put("companyName", "BBC");
-        userCompany.put("catchPhrase", "catch phrase");
-        userCompany.put("bs", "don't even know");
-        userForCreation.setCompany(userCompany);
-
-        return userForCreation;
     }
 }
