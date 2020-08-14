@@ -3,7 +3,6 @@ package org.softserve.edu.uitest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.softserve.edu.uipageobject.pages.HerokuappInputPage;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
