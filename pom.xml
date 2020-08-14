@@ -16,6 +16,11 @@
         <assertj-guava.version>3.3.0</assertj-guava.version>
         <rest-assured.version>4.3.0</rest-assured.version>
         <jackson-2.version>2.10.3</jackson-2.version>
+        <selenium-server.version>3.14.0</selenium-server.version>
+        <selenium-java.version>3.141.59</selenium-java.version>
+        <selenium-chrome-driver>3.141.59</selenium-chrome-driver>
+        <logback-classic.version>1.2.3</logback-classic.version>
+        <junit.version>3.8.1</junit.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
     </properties>
@@ -79,6 +84,33 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>${selenium-server.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${selenium-chrome-driver}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
