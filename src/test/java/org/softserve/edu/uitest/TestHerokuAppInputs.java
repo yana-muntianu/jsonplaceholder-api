@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.softserve.edu.uipageobject.pages.HerokuappInputPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestHerokuAppInputs extends TestSetup {
 
@@ -19,7 +20,7 @@ public class TestHerokuAppInputs extends TestSetup {
         inputPage.navigateToInputsPage()
                 .setInputText("1234");
 
-        Assert.assertEquals(inputPage.getTextFromInput(), "1234", "Text is different:");
+       assertThat(inputPage.getTextFromInput()).isEqualTo( "1234");
 
         LOG.info("Finish: Input valid data to input field ");
     }

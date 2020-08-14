@@ -3,7 +3,7 @@ package org.softserve.edu.uitest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.softserve.edu.uipageobject.pages.HerokuappCheckboxesPage;
-import org.testng.Assert;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.Test;
 
 public class TestHerokuAppCheckboxes extends TestSetup {
@@ -18,7 +18,7 @@ public class TestHerokuAppCheckboxes extends TestSetup {
         HerokuappCheckboxesPage checkboxesPage = new HerokuappCheckboxesPage(getDriver());
         checkboxesPage.navigateToCheckboxesPage().tickCheckbox();
 
-        Assert.assertTrue(checkboxesPage.isCheckboxChecked(), "Checkbox is not checked");
+        assertThat(checkboxesPage.isCheckboxChecked()).isTrue();
 
         LOG.info("Finish: Tick unchecked checkbox ");
     }
