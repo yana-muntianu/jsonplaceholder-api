@@ -1,0 +1,1534 @@
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n    <modelVersion>4.0.0</modelVersion>\n\n    <groupId>codewars</groupId>\n    <artifactId>tasks-java</artifactId>\n    <version>1.0-SNAPSHOT</version>\n    <properties>\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\n        <java.version>1.11</java.version>\n        <testng.version>6.8.8</testng.version>\n        <log4j.version>2.13.1</log4j.version>\n        <assertj-core.version>3.15.0</assertj-core.version>\n        <assertj-guava.version>3.3.0</assertj-guava.version>\n        <rest-assured.version>4.3.0</rest-assured.version>\n        <jackson-2.version>2.10.3</jackson-2.version>\n        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>\n        <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>\n    </properties>\n\n    <dependencies>\n        <dependency>\n            <groupId>org.testng</groupId>\n            <artifactId>testng</artifactId>\n            <version>${testng.version}</version>\n            <scope>test</scope>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.logging.log4j</groupId>\n            <artifactId>log4j-api</artifactId>\n            <version>${log4j.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.logging.log4j</groupId>\n            <artifactId>log4j-core</artifactId>\n            <version>${log4j.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>org.assertj</groupId>\n            <artifactId>assertj-core</artifactId>\n            <version>${assertj-core.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>org.assertj</groupId>\n            <artifactId>assertj-guava</artifactId>\n            <version>${assertj-guava.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>io.rest-assured</groupId>\n            <artifactId>rest-assured</artifactId>\n            <version>${rest-assured.version}</version>\n            <scope>test</scope>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-databind</artifactId>\n            <version>${jackson-2.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-core</artifactId>\n            <version>${jackson-2.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-annotations</artifactId>\n            <version>${jackson-2.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>org.codehaus.mojo</groupId>\n            <artifactId>properties-maven-plugin</artifactId>\n            <version>${properties-maven-plugin.version}</version>\n            <type>maven-plugin</type>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.commons</groupId>\n            <artifactId>commons-lang3</artifactId>\n            <version>3.4</version>\n            <scope>compile</scope>\n        </dependency>\n\n    </dependencies>\n\n    <build>\n        <plugins>\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-compiler-plugin</artifactId>\n                <version>3.1</version>\n                <configuration>\n                    <source>11</source>\n                    <target>11</target>\n                </configuration>\n            </plugin>\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-surefire-plugin</artifactId>\n                <version>${maven-surefire-plugin.version}</version>\n                <configuration>\n                    <suiteXmlFiles>\n                        <suiteXmlFile>testNg.xml</suiteXmlFile>\n                    </suiteXmlFiles>\n                </configuration>\n            </plugin>\n            <plugin>\n                <groupId>org.codehaus.mojo</groupId>\n                <artifactId>properties-maven-plugin</artifactId>\n                <version>${properties-maven-plugin.version}</version>\n                <executions>\n                    <execution>\n                        <phase>initialize</phase>\n                        <goals>\n                            <goal>read-project-properties</goal>\n                        </goals>\n                        <configuration>\n                            <files>\n                                <file>src/main/resources/maven.properties</file>\n                            </files>\n                        </configuration>\n                    </execution>\n                </executions>\n            </plugin>\n        </plugins>\n    </build>\n</project>\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pom.xml	(revision 110ba05050568623bdda1cbf14693a5e6efa2e9a)
++++ pom.xml	(date 1597391540943)
+@@ -18,6 +18,11 @@
+         <jackson-2.version>2.10.3</jackson-2.version>
+         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
++        <selenium-server.version>3.14.0</selenium-server.version>
++        <selenium-java.version>3.141.59</selenium-java.version>
++        <selenium-chrome-driver>3.141.59</selenium-chrome-driver>
++        <logback-classic.version>1.2.3</logback-classic.version>
++        <junit.version>3.8.1</junit.version>
+     </properties>
+ 
+     <dependencies>
+@@ -80,6 +85,44 @@
+             <version>3.4</version>
+             <scope>compile</scope>
+         </dependency>
++        <dependency>
++            <groupId>org.seleniumhq.selenium</groupId>
++            <artifactId>selenium-server</artifactId>
++            <version>${selenium-server.version}</version>
++        </dependency>
++        <dependency>
++            <groupId>org.seleniumhq.selenium</groupId>
++            <artifactId>selenium-java</artifactId>
++            <version>${selenium-java.version}</version>
++        </dependency>
++        <dependency>
++            <groupId>org.seleniumhq.selenium</groupId>
++            <artifactId>selenium-chrome-driver</artifactId>
++            <version>${selenium-chrome-driver}</version>
++        </dependency>
++        <dependency>
++            <groupId>ch.qos.logback</groupId>
++            <artifactId>logback-classic</artifactId>
++            <version>${logback-classic.version}</version>
++            <scope>test</scope>
++        </dependency>
++        <dependency>
++            <groupId>junit</groupId>
++            <artifactId>junit</artifactId>
++            <version>${junit.version}</version>
++            <scope>test</scope>
++        </dependency>
++        <dependency>
++            <groupId>org.seleniumhq.selenium</groupId>
++            <artifactId>selenium-support</artifactId>
++            <version>3.14.0</version>
++        </dependency>
++        <dependency>
++            <groupId>org.slf4j</groupId>
++            <artifactId>slf4j-api</artifactId>
++            <version>1.7.25</version>
++            <scope>test</scope>
++        </dependency>
+ 
+     </dependencies>
+ 
+Index: src/test/java/org/softserve/edu/TestGetUser.java
+===================================================================
+--- src/test/java/org/softserve/edu/TestGetUser.java	(revision 110ba05050568623bdda1cbf14693a5e6efa2e9a)
++++ src/test/java/org/softserve/edu/TestGetUser.java	(revision 110ba05050568623bdda1cbf14693a5e6efa2e9a)
+@@ -1,96 +0,0 @@
+-package org.softserve.edu;
+-
+-import io.restassured.response.Response;
+-import io.restassured.response.ValidatableResponse;
+-
+-import org.apache.logging.log4j.LogManager;
+-import org.apache.logging.log4j.Logger;
+-import org.softserve.edu.controllers.RequestURI;
+-import org.softserve.edu.models.StatusCodes;
+-import org.testng.annotations.*;
+-
+-import java.lang.reflect.Method;
+-import java.util.List;
+-
+-import static io.restassured.RestAssured.*;
+-import static org.assertj.core.api.Assertions.assertThat;
+-
+-public class TestGetUser {
+-
+-    private static final Logger LOG = LogManager.getLogger(TestGetUser.class.getName());
+-
+-    // TODO implement before/after methods as a separate class with extension
+-
+-    @BeforeMethod
+-    public void beforeRequest(Method method){
+-        String testName = method.getName();
+-        LOG.info("Running method "+ testName);
+-    }
+-
+-    @Test(groups = "GET requests", testName = "REST: GET: Verify get user by valid ID")
+-    public void testGetUserByValidId() {
+-
+-        ValidatableResponse getUser =
+-                given().
+-                        get(RequestURI.BASE_URI + "/users/1").
+-                then().
+-                        statusCode(StatusCodes.OK);
+-
+-        Response getUserResponse = getUser.
+-                extract().
+-                response();
+-
+-//    'name' field from the response body to string Verify 'name' field from the response body and test street given
+-
+-        String responseName = getUserResponse.
+-                path("name");
+-        assertThat(responseName).
+-                isEqualTo("Leanne Graham");
+-
+-//    'username' field from the response body to string Verify 'username' field from the response body and test street given
+-
+-        String responseUsername = getUserResponse.
+-                path("username");
+-        assertThat(responseUsername).
+-                isEqualTo("Bret");
+-
+-//    'city' field from the response body to string Verify 'city' field from the response body and test street given
+-
+-
+-        String responseCity = getUserResponse.
+-                path("address.city");
+-        assertThat(responseCity).
+-                isEqualTo("Gwenborough");
+-
+-    }
+-
+-    @Test(groups = "GET requests", testName = "REST: GET: Verify list of users in response and count its length")
+-    public void testCountUsersInResponseList(){
+-
+-        ValidatableResponse getUserList =
+-                given().
+-                        get(RequestURI.BASE_URI + "/users").
+-                then().
+-                        statusCode(StatusCodes.OK);
+-
+-        Response getUsersListResponse = getUserList.
+-                extract().
+-                response();
+-
+-//Get all users ids as a list and assert list is bigger than 5
+-
+-        List<Integer> ids = getUsersListResponse.jsonPath().getList("id");
+-        assertThat(ids.size()).isGreaterThan(5);
+-    }
+-
+-    @AfterMethod
+-    public void afterRequest(Method method){
+-        String testName = method.getName();
+-        LOG.info("Finishing method "+ testName);
+-    }
+-
+-    @AfterClass
+-    public void cleanUp(){
+-        LOG.info("All GET requests sent");
+-    }
+-}
+Index: src/test/java/org/softserve/edu/TestCreateUser.java
+===================================================================
+--- src/test/java/org/softserve/edu/TestCreateUser.java	(revision 110ba05050568623bdda1cbf14693a5e6efa2e9a)
++++ src/test/java/org/softserve/edu/TestCreateUser.java	(revision 110ba05050568623bdda1cbf14693a5e6efa2e9a)
+@@ -1,111 +0,0 @@
+-package org.softserve.edu;
+-
+-import io.restassured.response.Response;
+-import io.restassured.response.ValidatableResponse;
+-import org.apache.logging.log4j.LogManager;
+-import org.apache.logging.log4j.Logger;
+-
+-import org.softserve.edu.models.StatusCodes;
+-import org.softserve.edu.testdata.placeholder.UserTestData;
+-import org.softserve.edu.utils.ConverterDTO;
+-import org.testng.annotations.*;
+-
+-import java.lang.reflect.Method;
+-import java.util.LinkedHashMap;
+-
+-import static io.restassured.RestAssured.given;
+-import static org.assertj.core.api.Assertions.assertThat;
+-
+-
+-public class TestCreateUser {
+-
+-    private static final Logger LOG = LogManager.getLogger(TestGetUser.class.getName());
+-
+-    @BeforeMethod
+-    public void beforeRequest(Method method){
+-        String testName = method.getName();
+-        LOG.info("Running method "+ testName);
+-    }
+-
+-    @Test (groups = "POST requests", testName = "REST: POST: Verify create new user with valid data ")
+-    public void testCreateNewUserWithValidData() {
+-
+-        UserTestData userForCreation = new UserTestData();
+-
+-        String jsonInString = ConverterDTO.dtoToJsonString(userForCreation);
+-
+-            ValidatableResponse createNewUser =
+-                    given().
+-                            contentType("application/json").
+-                            body(jsonInString).
+-                    when().
+-                            post("/users").
+-                    then().
+-                            statusCode(StatusCodes.CREATED);
+-
+-        Response createNewUserResponse = createNewUser.
+-                extract().
+-                response();
+-
+-//    'name' field from the response body to string Verify 'name' field from the response body and one from the User object
+-
+-        String responseName = createNewUserResponse.
+-                path("name");
+-        assertThat(responseName).
+-                isEqualTo(userForCreation.getName());
+-
+-//    'username' field from the response body to string Verify 'username' field from the response body and one from the User object
+-
+-            String responseUsername = createNewUserResponse.
+-                    path("username");
+-            assertThat(responseUsername).
+-                    isEqualTo(userForCreation.getUsername());
+-
+-//    'email' field from the response body to string Verify 'email' field from the response body and one from the User object
+-
+-            String responseEmail = createNewUserResponse.
+-                    path("email");
+-            assertThat(responseEmail).
+-                    isEqualTo(userForCreation.getEmail());
+-
+-//    'phone' field from the response body to string Verify 'phone' field from the response body and one from the User object
+-
+-            String responsePhone = createNewUserResponse.
+-                    path("phone");
+-            assertThat(responsePhone).
+-                    isEqualTo(userForCreation.getPhone());
+-
+-//    'website' field from the response body to string Verify 'website' field from the response body and one from the User object
+-
+-            String responseWebsite = createNewUserResponse.
+-                    path("website");
+-            assertThat(responseWebsite).
+-                    isEqualTo(userForCreation.getWebsite());
+-
+-//    'address' field from the response body to string Verify 'address' field from the response body and map from the User object
+-
+-            LinkedHashMap<String,Object> responseAddress = createNewUserResponse.
+-                    path("address");
+-            assertThat(responseAddress).
+-                    isEqualTo(userForCreation.getAddress());
+-
+-//    'company' field from the response body to string Verify 'address' field from the response body and map from the User object
+-
+-            LinkedHashMap<String,Object> responseCompany = createNewUserResponse.
+-                    path("company");
+-            assertThat(responseCompany).
+-                    isEqualTo(userForCreation.getCompany());
+-
+-    }
+-
+-    @AfterMethod
+-    public void afterRequest(Method method){
+-        String testName = method.getName();
+-        LOG.info("Finishing method "+ testName);
+-    }
+-
+-    @AfterClass
+-    public void cleanUp(){
+-        LOG.info("All POST requests sent");
+-    }
+-}
+Index: src/test/java/org/softserve/edu/TestUpdateUser.java
+===================================================================
+--- src/test/java/org/softserve/edu/TestUpdateUser.java	(revision 110ba05050568623bdda1cbf14693a5e6efa2e9a)
++++ src/test/java/org/softserve/edu/TestUpdateUser.java	(revision 110ba05050568623bdda1cbf14693a5e6efa2e9a)
+@@ -1,131 +0,0 @@
+-package org.softserve.edu;
+-
+-import io.restassured.response.Response;
+-import io.restassured.response.ValidatableResponse;
+-
+-import org.apache.logging.log4j.LogManager;
+-import org.apache.logging.log4j.Logger;
+-import org.softserve.edu.controllers.RequestURI;
+-
+-import org.softserve.edu.models.StatusCodes;
+-import org.softserve.edu.testdata.placeholder.UserTestData;
+-import org.softserve.edu.utils.ConverterDTO;
+-import org.testng.annotations.*;
+-
+-import java.lang.reflect.Method;
+-
+-import java.util.LinkedHashMap;
+-
+-import static io.restassured.RestAssured.*;
+-import static org.assertj.core.api.Assertions.assertThat;
+-
+-public class TestUpdateUser {
+-
+-    private static final Logger LOG = LogManager.getLogger(TestGetUser.class.getName());
+-
+-    @BeforeMethod
+-    public void beforeRequest(Method method){
+-        String testName = method.getName();
+-        LOG.info("Running method "+ testName);
+-    }
+-
+-    @Test (groups = "PUT requests", testName = "REST: PUT: Verify update user with valid data by valid ID")
+-    public void testUpdateUserWithValidData() {
+-
+-            UserTestData updatedUserData = new UserTestData();
+-
+-            String jsonInString = ConverterDTO.dtoToJsonString(updatedUserData);
+-
+-            ValidatableResponse updateUser =
+-                    given().
+-                            contentType("application/json").
+-                            body(jsonInString).
+-                    when().
+-                            put(RequestURI.BASE_URI + "/users/9").
+-                    then().
+-                            statusCode(StatusCodes.OK);
+-
+-            Response updateUserResponse = updateUser.
+-                    extract().
+-                    response();
+-
+-//    'name' field from the response body to string Verify 'name' field from the response body and one from the User object
+-
+-            String responseName = updateUserResponse.
+-                    path("name");
+-            assertThat(responseName).
+-                    isEqualTo(updatedUserData.getName());
+-
+-//    'username' field from the response body to string  Verify 'username' field from the response body and one from the User object
+-
+-            String responseUsername = updateUserResponse.
+-                    path("username");
+-            assertThat(responseUsername).
+-                    isEqualTo(updatedUserData.getUsername());
+-
+-//    'email' field from the response body to string Verify 'email' field from the response body and one from the User object
+-
+-            String responseEmail = updateUserResponse.
+-                    path("email");
+-            assertThat(responseEmail).
+-                    isEqualTo(updatedUserData.getEmail());
+-
+-//    'phone' field from the response body to string Verify 'phone' field from the response body and one from the User object
+-
+-            String responsePhone = updateUserResponse.
+-                    path("phone");
+-            assertThat(responsePhone).
+-                    isEqualTo(updatedUserData.getPhone());
+-
+-//    'website' field from the response body to string Verify 'website' field from the response body and one from the User object
+-
+-            String responseWebsite = updateUserResponse.
+-                    path("website");
+-            assertThat(responseWebsite).
+-                    isEqualTo(updatedUserData.getWebsite());
+-
+-//    'address' field from the response body to string Verify 'address' field from the response body and map from the User object
+-
+-            LinkedHashMap<String,Object> responseAddress = updateUserResponse.
+-                    path("address");
+-            assertThat(responseAddress).
+-                    isEqualTo(updatedUserData.getAddress());
+-
+-//    'company' field from the response body to string Verify 'address' field from the response body and map from the User object
+-
+-            LinkedHashMap<String,Object> responseCompany = updateUserResponse.
+-                    path("company");
+-            assertThat(responseCompany).
+-                    isEqualTo(updatedUserData.getCompany());
+-
+-    }
+-
+-    @Test (groups = "PUT requests", testName = "REST: PUT: Verify update user with valid data by invalid ID")
+-    public void testUpdateUserWithInvalidId(){
+-
+-            UserTestData updatedUserData = new UserTestData();
+-
+-            String jsonInString = ConverterDTO.dtoToJsonString(updatedUserData);
+-
+-                    given().
+-                            contentType("application/json").
+-                            body(jsonInString).
+-                    when().
+-                            put(RequestURI.BASE_URI + "/users/18").
+-                    then().
+-                            statusCode(StatusCodes.NOT_FOUND).
+-                    log().all();
+-
+-    }
+-
+-    @AfterMethod
+-    public void afterRequest(Method method){
+-        String testName = method.getName();
+-        LOG.info("Finishing method "+ testName);
+-    }
+-
+-    @AfterClass
+-    public void cleanUp(){
+-        LOG.info("All PUT requests sent");
+-    }
+-}
+Index: src/main/java/org/softserve/edu/uipageobject/pages/HerokuappCheckboxesPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/org/softserve/edu/uipageobject/pages/HerokuappCheckboxesPage.java	(date 1597391865797)
++++ src/main/java/org/softserve/edu/uipageobject/pages/HerokuappCheckboxesPage.java	(date 1597391865797)
+@@ -0,0 +1,49 @@
++package org.softserve.edu.uipageobject.pages;
++
++import org.openqa.selenium.By;
++import org.openqa.selenium.WebDriver;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++
++public class HerokuappCheckboxesPage {
++
++    protected WebDriver driver;
++
++    @FindBy(xpath = "//*[@id='checkboxes']/input[1]")
++    WebElement checkbox;
++
++    public HerokuappCheckboxesPage(WebDriver driver) {
++        this.driver = driver;
++        PageFactory.initElements(driver, this);
++    }
++
++    public void clickOnCheckboxesLinkInRightBar() {
++        driver.findElement(By.xpath("//*[@id='content']/ul/li[6]/a")).click();
++    }
++
++    /*
++    Navigate to the Checkboxes page
++     */
++    public HerokuappCheckboxesPage navigateToCheckboxesPage() {
++        clickOnCheckboxesLinkInRightBar();
++        return new HerokuappCheckboxesPage(driver);
++    }
++
++    /*
++    Tick unchecked checkbox
++     */
++    public void tickCheckbox(){
++        this.checkbox.click();
++    }
++
++    /*
++    Verify checkbox status
++     */
++    public boolean isCheckboxChecked(){
++        return checkbox.isSelected();
++    }
++
++
++}
++
+Index: src/main/java/org/softserve/edu/uipageobject/pages/HerokuappInputPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/org/softserve/edu/uipageobject/pages/HerokuappInputPage.java	(date 1597391865806)
++++ src/main/java/org/softserve/edu/uipageobject/pages/HerokuappInputPage.java	(date 1597391865806)
+@@ -0,0 +1,48 @@
++package org.softserve.edu.uipageobject.pages;
++
++import org.openqa.selenium.By;
++import org.openqa.selenium.WebDriver;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++
++public class HerokuappInputPage {
++
++    protected WebDriver driver;
++
++    @FindBy(xpath = "//input[@type='number']")
++    WebElement inputField;
++
++    public HerokuappInputPage(WebDriver driver) {
++        this.driver = driver;
++        PageFactory.initElements(driver, this);
++    }
++
++    public void clickOnInputLinkInRightBar(){
++        driver.findElement(By.xpath("//*[@id='content']/ul/li[27]/a")).click();
++    }
++
++    /*
++    Navigate to the Inputs page
++     */
++    public HerokuappInputPage navigateToInputsPage() {
++        clickOnInputLinkInRightBar();
++        return new HerokuappInputPage(driver);
++    }
++
++    /*
++    Input text into input field
++     */
++    public void setInputText(String text){
++        this.inputField.sendKeys(text);
++    }
++
++    /*
++    Verify text displayed
++     */
++    public String getTextFromInput(){
++        return this.inputField.getAttribute("value");
++    }
++
++
++}
+Index: src/main/java/org/softserve/edu/commons/TestProperties.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/org/softserve/edu/commons/TestProperties.java	(date 1597391865794)
++++ src/main/java/org/softserve/edu/commons/TestProperties.java	(date 1597391865794)
+@@ -0,0 +1,34 @@
++package org.softserve.edu.commons;
++
++import java.io.InputStream;
++import java.util.Properties;
++
++public class TestProperties {
++    static private Properties properties;
++
++    private static void readProperties() {
++        if (properties != null) {
++            return;
++        }
++
++        properties = new Properties();
++
++        try (InputStream stream = TestProperties.class.getResourceAsStream("/config/config.properties")) {
++            properties.load(stream);
++
++        } catch (Exception e) {
++            throw new RuntimeException(e);
++        }
++    }
++
++    public static String getHomePageURL() {
++        readProperties();
++        return properties.getProperty("HOME_PAGE_URL");
++    }
++
++    public static int getWaiterTimeout() {
++        readProperties();
++        return Integer.valueOf(properties.getProperty("WAITERS_TIMEOUT"));
++    }
++
++}
+Index: src/test/java/org/softserve/edu/testdata/placeholder/UserTestData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.softserve.edu.testdata.placeholder;\n\nimport org.softserve.edu.models.UserDataDTO;\n\nimport java.util.LinkedHashMap;\n\npublic class UserTestData extends UserDataDTO {\n\n    public UserTestData testUser(){\n\n        setName(\"Mary\");\n        setUsername(\"maryleen\");\n        setEmail(\"mary-16@gmail.com\");\n\n        LinkedHashMap<String, Object> userAddress = new LinkedHashMap<>();\n        userAddress.put(\"street\", \"Baseline\");\n        userAddress.put(\"suite\", \"90\");\n        userAddress.put(\"city\", \"Ottawa\");\n        userAddress.put(\"zipcode\", \"CO3 KJ7\");\n        setAddress(userAddress);\n\n        setPhone(\"123-639-091\");\n        setWebsite(\"maryleen.com\");\n\n        LinkedHashMap<String, Object> userCompany = new LinkedHashMap<>();\n        userCompany.put(\"companyName\", \"Apple\");\n        userCompany.put(\"catchPhrase\", \"catch phrase\");\n        userCompany.put(\"bs\", \"don't even know\");\n        setCompany(userCompany);\n\n        return new UserTestData();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/org/softserve/edu/testdata/placeholder/UserTestData.java	(revision 110ba05050568623bdda1cbf14693a5e6efa2e9a)
++++ src/test/java/org/softserve/edu/testdata/placeholder/UserTestData.java	(date 1594229160574)
+@@ -1,33 +1,30 @@
+ package org.softserve.edu.testdata.placeholder;
+ 
+-import org.softserve.edu.models.UserDataDTO;
+-
+-import java.util.LinkedHashMap;
++import org.softserve.edu.models.placeholder.UserAddressDTO;
++import org.softserve.edu.models.placeholder.UserCompanyDTO;
++import org.softserve.edu.models.placeholder.UserDataDTO;
+ 
+-public class UserTestData extends UserDataDTO {
+ 
+-    public UserTestData testUser(){
++public class UserTestData {
+ 
+-        setName("Mary");
+-        setUsername("maryleen");
+-        setEmail("mary-16@gmail.com");
++    public UserDataDTO getDefaultUserData(){
++        UserDataDTO userDataDTO = new UserDataDTO()
++                .setName("Mary")
++                .setUsername("maryleen")
++                .setEmail("mary-16@gmail.com")
++                .setAddress(new UserAddressDTO()
++                    .setStreet("Baseline")
++                    .setSuite("90")
++                    .setCity("Ottawa")
++                    .setZipcode("CO3 KJ7"))
++                .setPhone("123-639-091")
++                .setWebsite("maryleen.com")
++                .setCompany(new UserCompanyDTO()
++                    .setName("Apple")
++                    .setCatchPhrase("catch phrase")
++                    .setBs("BS"));
+ 
+-        LinkedHashMap<String, Object> userAddress = new LinkedHashMap<>();
+-        userAddress.put("street", "Baseline");
+-        userAddress.put("suite", "90");
+-        userAddress.put("city", "Ottawa");
+-        userAddress.put("zipcode", "CO3 KJ7");
+-        setAddress(userAddress);
++        return userDataDTO;
++    }
+ 
+-        setPhone("123-639-091");
+-        setWebsite("maryleen.com");
+-
+-        LinkedHashMap<String, Object> userCompany = new LinkedHashMap<>();
+-        userCompany.put("companyName", "Apple");
+-        userCompany.put("catchPhrase", "catch phrase");
+-        userCompany.put("bs", "don't even know");
+-        setCompany(userCompany);
+-
+-        return new UserTestData();
+-    }
+ }
+Index: src/test/java/org/softserve/edu/uitest/TestSetup.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/org/softserve/edu/uitest/TestSetup.java	(date 1597391865787)
++++ src/test/java/org/softserve/edu/uitest/TestSetup.java	(date 1597391865787)
+@@ -0,0 +1,44 @@
++package org.softserve.edu.uitest;
++
++import org.softserve.edu.commons.TestProperties;
++import org.openqa.selenium.WebDriver;
++import org.openqa.selenium.chrome.ChromeDriver;
++import org.testng.annotations.AfterClass;
++import org.testng.annotations.AfterMethod;
++import org.testng.annotations.BeforeClass;
++import org.testng.annotations.BeforeMethod;
++
++import java.util.concurrent.TimeUnit;
++
++public class TestSetup {
++
++    private WebDriver driver;
++
++    @BeforeClass
++    public void driverSetUp() {
++        driver = new ChromeDriver();
++        driver.manage().window().maximize();
++        driver.manage().timeouts().implicitlyWait(TestProperties.getWaiterTimeout(), TimeUnit.SECONDS);
++    }
++
++    @AfterClass
++    public void driverTearDown() {
++        driver.quit();
++    }
++
++    @BeforeMethod
++    public void setUp() {
++        driver.get(TestProperties.getHomePageURL());
++    }
++
++    @AfterMethod
++    public void tearDown() {
++        driver.get(TestProperties.getHomePageURL());
++    }
++
++    public WebDriver getDriver() {
++        return this.driver;
++    }
++
++
++}
+Index: src/test/java/org/softserve/edu/uitest/TestHerokuAppCheckboxes.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/org/softserve/edu/uitest/TestHerokuAppCheckboxes.java	(date 1597391865802)
++++ src/test/java/org/softserve/edu/uitest/TestHerokuAppCheckboxes.java	(date 1597391865802)
+@@ -0,0 +1,25 @@
++package org.softserve.edu.uitest;
++
++import org.softserve.edu.uipageobject.pages.HerokuappCheckboxesPage;
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
++import org.testng.Assert;
++import org.testng.annotations.Test;
++
++public class TestHerokuAppCheckboxes extends TestSetup {
++
++    final static Logger LOG = LoggerFactory.getLogger(TestHerokuAppInputs.class);
++
++    @Test(testName = "Tick unchecked checkbox")
++    public void tickUncheckedCheckbox() throws InterruptedException {
++
++        LOG.info("Start: Tick unchecked checkbox ");
++
++        HerokuappCheckboxesPage checkboxesPage = new HerokuappCheckboxesPage(getDriver());
++        checkboxesPage.navigateToCheckboxesPage().tickCheckbox();
++
++        Assert.assertTrue(checkboxesPage.isCheckboxChecked(), "Checkbox is not checked");
++
++        LOG.info("Finish: Tick unchecked checkbox ");
++    }
++}
+Index: src/test/java/org/softserve/edu/uitest/TestHerokuAppInputs.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/org/softserve/edu/uitest/TestHerokuAppInputs.java	(date 1597391865791)
++++ src/test/java/org/softserve/edu/uitest/TestHerokuAppInputs.java	(date 1597391865791)
+@@ -0,0 +1,26 @@
++package org.softserve.edu.uitest;
++
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
++import org.softserve.edu.uipageobject.pages.HerokuappInputPage;
++import org.testng.Assert;
++import org.testng.annotations.Test;
++
++public class TestHerokuAppInputs extends TestSetup {
++
++    final static Logger LOG = LoggerFactory.getLogger(TestHerokuAppInputs.class);
++
++    @Test(testName = "Input valid data to input field ")
++    public void inputValidDataIntoInputFieldTest() {
++
++        LOG.info("Start: Input valid data to input field ");
++
++        HerokuappInputPage inputPage = new HerokuappInputPage(getDriver());
++        inputPage.navigateToInputsPage()
++                .setInputText("1234");
++
++        Assert.assertEquals(inputPage.getTextFromInput(), "1234", "Text is different:");
++
++        LOG.info("Finish: Input valid data to input field ");
++    }
++}
+Index: src/test/java/org/softserve/edu/apitests/TestCreateUser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/org/softserve/edu/apitests/TestCreateUser.java	(date 1594222713261)
++++ src/test/java/org/softserve/edu/apitests/TestCreateUser.java	(date 1594222713261)
+@@ -0,0 +1,66 @@
++package org.softserve.edu;
++
++import io.restassured.response.ValidatableResponse;
++import org.apache.logging.log4j.LogManager;
++import org.apache.logging.log4j.Logger;
++
++import org.softserve.edu.models.StatusCodes;
++import org.softserve.edu.models.placeholder.UserDataDTO;
++import org.softserve.edu.testdata.placeholder.UserTestData;
++import org.softserve.edu.utils.ConverterDTO;
++import org.testng.annotations.*;
++
++import java.lang.reflect.Method;
++
++import static io.restassured.RestAssured.given;
++import static org.assertj.core.api.Assertions.assertThat;
++
++
++public class TestCreateUser {
++
++    private static final Logger LOG = LogManager.getLogger(TestGetUser.class.getName());
++
++    @BeforeMethod
++    public void beforeRequest(Method method){
++        String testName = method.getName();
++        LOG.info("Running method "+ testName);
++    }
++
++    @Test (groups = "POST requests", testName = "REST: POST: Verify create new user with valid data ")
++    public void testCreateNewUserWithValidData() {
++
++        UserDataDTO userForCreation = new UserTestData().getDefaultUserData();
++        LOG.info("Request object {}", ConverterDTO.dtoToPrettyJsonString(userForCreation));
++
++            ValidatableResponse createNewUser =
++                    given().
++                            contentType("application/json").
++                            body(userForCreation).
++                    when().
++                            post("/users").
++                    then().
++                            statusCode(StatusCodes.CREATED);
++
++        UserDataDTO userResponse = createNewUser.extract().as(UserDataDTO.class);
++        System.out.println(userResponse.toPrettyJsonString());
++
++        //Validation
++        assertThat(userResponse)
++                .usingRecursiveComparison()
++                .ignoringActualNullFields()
++                .ignoringAllOverriddenEquals()
++                .ignoringFields("id")
++                .isEqualTo(userForCreation);
++    }
++
++    @AfterMethod
++    public void afterRequest(Method method){
++        String testName = method.getName();
++        LOG.info("Finishing method "+ testName);
++    }
++
++    @AfterClass
++    public void cleanUp(){
++        LOG.info("All POST requests sent");
++    }
++}
+Index: src/test/java/org/softserve/edu/apitests/TestGetUser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/org/softserve/edu/apitests/TestGetUser.java	(date 1594232031581)
++++ src/test/java/org/softserve/edu/apitests/TestGetUser.java	(date 1594232031581)
+@@ -0,0 +1,98 @@
++package org.softserve.edu;
++
++import io.restassured.response.Response;
++import io.restassured.response.ValidatableResponse;
++
++import org.apache.logging.log4j.LogManager;
++import org.apache.logging.log4j.Logger;
++import org.softserve.edu.controllers.RequestURI;
++import org.softserve.edu.models.StatusCodes;
++import org.softserve.edu.models.placeholder.UserAddressDTO;
++import org.softserve.edu.models.placeholder.UserDataDTO;
++import org.softserve.edu.testdata.placeholder.APITestUser;
++import org.softserve.edu.testdata.placeholder.UserTestData;
++import org.softserve.edu.utils.ConverterDTO;
++import org.testng.annotations.*;
++
++import java.lang.reflect.Method;
++import java.util.List;
++
++import static io.restassured.RestAssured.*;
++import static org.assertj.core.api.Assertions.assertThat;
++
++public class TestGetUser {
++
++    private static final Logger LOG = LogManager.getLogger(TestGetUser.class.getName());
++
++    // TODO implement before/after methods as a separate class with extension
++
++    @BeforeMethod
++    public void beforeRequest(Method method){
++        String testName = method.getName();
++        LOG.info("Running method "+ testName);
++    }
++
++    @Test(groups = "GET requests", testName = "REST: GET: Verify get user by valid ID")
++    public void testGetUserByValidId() {
++
++        UserDataDTO getUserData = getAPIUser();
++        LOG.info("Request object {}", ConverterDTO.dtoToPrettyJsonString(getUserData));
++
++        ValidatableResponse getUser =
++                given().
++                        get(RequestURI.BASE_URI + "/users/1").
++                then().
++                        statusCode(StatusCodes.OK);
++
++        UserDataDTO userResponse = getUser.extract().as(UserDataDTO.class);
++        System.out.println(userResponse.toPrettyJsonString());
++
++        //Validate
++        assertThat(userResponse.getName())
++                .isEqualTo(getUserData.getName());
++        assertThat(userResponse.getUsername())
++                .isEqualTo(getUserData.getUsername());
++        assertThat(userResponse.getAddress().getCity())
++                .isEqualTo(getUserData.getAddress().getCity());
++
++    }
++
++    @Test(groups = "GET requests", testName = "REST: GET: Verify list of users in response and count its length")
++    public void testCountUsersInResponseList(){
++
++        ValidatableResponse getUserList =
++                given().
++                        get(RequestURI.BASE_URI + "/users").
++                then().
++                        statusCode(StatusCodes.OK);
++
++        Response getUsersListResponse = getUserList.
++                extract().
++                response();
++
++//Get all users ids as a list and assert list is bigger than 5
++
++        List<Integer> ids = getUsersListResponse.jsonPath().getList("id");
++        assertThat(ids.size()).isGreaterThan(5);
++    }
++
++    @AfterMethod
++    public void afterRequest(Method method){
++        String testName = method.getName();
++        LOG.info("Finishing method "+ testName);
++    }
++
++    @AfterClass
++    public void cleanUp(){
++        LOG.info("All GET requests sent");
++    }
++
++    private UserDataDTO getAPIUser(){
++
++        return new UserDataDTO()
++                .setName("Leanne Graham")
++                .setUsername("Bret")
++                .setAddress(new UserAddressDTO()
++                .setCity("Gwenborough"));
++    }
++}
+Index: src/test/java/org/softserve/edu/apitests/TestUpdateUser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/org/softserve/edu/apitests/TestUpdateUser.java	(date 1594221686476)
++++ src/test/java/org/softserve/edu/apitests/TestUpdateUser.java	(date 1594221686476)
+@@ -0,0 +1,85 @@
++package org.softserve.edu;
++
++import io.restassured.response.Response;
++import io.restassured.response.ValidatableResponse;
++
++import org.apache.logging.log4j.LogManager;
++import org.apache.logging.log4j.Logger;
++import org.softserve.edu.controllers.RequestURI;
++
++import org.softserve.edu.models.StatusCodes;
++import org.softserve.edu.models.placeholder.UserDataDTO;
++import org.softserve.edu.testdata.placeholder.UserTestData;
++import org.softserve.edu.utils.ConverterDTO;
++import org.testng.annotations.*;
++
++import java.lang.reflect.Method;
++
++import static io.restassured.RestAssured.*;
++import static org.assertj.core.api.Assertions.assertThat;
++
++public class TestUpdateUser {
++
++    private static final Logger LOG = LogManager.getLogger(TestGetUser.class.getName());
++
++    @BeforeMethod
++    public void beforeRequest(Method method){
++        String testName = method.getName();
++        LOG.info("Running method "+ testName);
++    }
++
++    @Test (groups = "PUT requests", testName = "REST: PUT: Verify update user with valid data by valid ID")
++    public void testUpdateUserWithValidData() {
++
++            UserDataDTO updatedUserData = new UserTestData().getDefaultUserData();
++
++            LOG.info("Request object {}", ConverterDTO.dtoToPrettyJsonString(updatedUserData));
++
++            ValidatableResponse updateUser =
++                    given().
++                            contentType("application/json").
++                            body(updatedUserData).
++                    when().
++                            put(RequestURI.BASE_URI + "/users/9").
++                    then().
++                            statusCode(StatusCodes.OK);
++            UserDataDTO userResponse = updateUser.extract().as(UserDataDTO.class);
++            System.out.println(userResponse.toPrettyJsonString());
++
++            //Validation
++            assertThat(userResponse)
++                    .usingRecursiveComparison()
++                    .ignoringActualNullFields()
++                    .ignoringAllOverriddenEquals()
++                    .ignoringFields("id")
++                    .isEqualTo(updatedUserData);
++    }
++
++    @Test (groups = "PUT requests", testName = "REST: PUT: Verify update user with valid data by invalid ID")
++    public void testUpdateUserWithInvalidId(){
++
++            UserDataDTO updatedUserData = new UserTestData().getDefaultUserData();
++
++            LOG.info("Request object {}", ConverterDTO.dtoToPrettyJsonString(updatedUserData));
++
++                    given().
++                            contentType("application/json").
++                            body(updatedUserData).
++                    when().
++                            put(RequestURI.BASE_URI + "/users/18").
++                    then().
++                            statusCode(StatusCodes.NOT_FOUND);
++
++    }
++
++    @AfterMethod
++    public void afterRequest(Method method){
++        String testName = method.getName();
++        LOG.info("Finishing method "+ testName);
++    }
++
++    @AfterClass
++    public void cleanUp(){
++        LOG.info("All PUT requests sent");
++    }
++}
+Index: src/main/java/org/softserve/edu/models/AbstractDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/org/softserve/edu/models/AbstractDTO.java	(date 1594018594653)
++++ src/main/java/org/softserve/edu/models/AbstractDTO.java	(date 1594018594653)
+@@ -0,0 +1,15 @@
++package org.softserve.edu.models;
++
++import org.softserve.edu.utils.ConverterDTO;
++
++public class AbstractDTO {
++
++    public String toPrettyJsonString() {
++        return ConverterDTO.dtoToPrettyJsonString(this);
++    }
++
++    @Override
++    public String toString() {
++        return ConverterDTO.dtoToJsonString(this);
++    }
++}
+Index: src/test/java/org/softserve/edu/testdata/placeholder/TestData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/org/softserve/edu/testdata/placeholder/TestData.java	(date 1594017708158)
++++ src/test/java/org/softserve/edu/testdata/placeholder/TestData.java	(date 1594017708158)
+@@ -0,0 +1,16 @@
++package org.softserve.edu.testdata.placeholder;
++
++public class TestData {
++
++    private TestData(){
++    }
++
++    public static TestData testData(){
++        return new TestData();
++    }
++
++    public UserTestData userTestData(){
++        return new UserTestData();
++    }
++
++}
+Index: src/main/resources/config/config.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/config/config.properties	(date 1597070720042)
++++ src/main/resources/config/config.properties	(date 1597070720042)
+@@ -0,0 +1,4 @@
++#PropertiesForProject
++
++HOME_PAGE_URL = http://the-internet.herokuapp.com/
++WAITERS_TIMEOUT = 20
+\ No newline at end of file
+Index: src/main/java/org/softserve/edu/models/placeholder/UserAddressDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/org/softserve/edu/models/placeholder/UserAddressDTO.java	(date 1594228908236)
++++ src/main/java/org/softserve/edu/models/placeholder/UserAddressDTO.java	(date 1594228908236)
+@@ -0,0 +1,96 @@
++package org.softserve.edu.models.placeholder;
++
++import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
++import com.fasterxml.jackson.annotation.JsonInclude;
++import com.fasterxml.jackson.annotation.JsonProperty;
++import org.apache.commons.lang3.builder.EqualsBuilder;
++import org.apache.commons.lang3.builder.HashCodeBuilder;
++import org.softserve.edu.models.AbstractDTO;
++
++@JsonIgnoreProperties(ignoreUnknown = false)
++@JsonInclude(JsonInclude.Include.NON_NULL)
++public class UserAddressDTO extends AbstractDTO {
++
++    @JsonProperty("street")
++    private String street;
++    @JsonProperty("suite")
++    private String suite;
++    @JsonProperty("city")
++    private String city;
++    @JsonProperty("zipcode")
++    private String zipcode;
++    @JsonProperty("geo")
++    private UserGeoDTO geo;
++
++    public String getStreet() {
++        return street;
++    }
++
++    public UserAddressDTO setStreet(String street) {
++        this.street = street;
++        return this;
++    }
++
++    public String getSuite() {
++        return suite;
++    }
++
++    public UserAddressDTO setSuite(String suite) {
++        this.suite = suite;
++        return this;
++    }
++
++    public String getCity() {
++        return city;
++    }
++
++    public UserAddressDTO setCity(String city) {
++        this.city = city;
++        return this;
++    }
++
++    public String getZipcode() {
++        return zipcode;
++    }
++
++    public UserAddressDTO setZipcode(String zipcode) {
++        this.zipcode = zipcode;
++        return this;
++    }
++
++    public UserGeoDTO getGeo() {
++        return geo;
++    }
++
++    public UserAddressDTO setGeo(UserGeoDTO geo) {
++        this.geo = geo;
++        return this;
++    }
++
++    @Override
++    public boolean equals(Object o) {
++        if (this == o) return true;
++
++        if (o == null || getClass() != o.getClass()) return false;
++
++        UserAddressDTO that = (UserAddressDTO) o;
++
++        return new EqualsBuilder()
++                .append(street, that.street)
++                .append(suite, that.suite)
++                .append(city, that.city)
++                .append(zipcode, that.zipcode)
++                .isEquals();
++    }
++
++    @Override
++    public int hashCode() {
++        return new HashCodeBuilder(17, 37)
++                .append(street)
++                .append(suite)
++                .append(city)
++                .append(zipcode)
++                .toHashCode();
++    }
++
++}
+Index: src/main/java/org/softserve/edu/models/placeholder/UserGeoDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/org/softserve/edu/models/placeholder/UserGeoDTO.java	(date 1594228908231)
++++ src/main/java/org/softserve/edu/models/placeholder/UserGeoDTO.java	(date 1594228908231)
+@@ -0,0 +1,59 @@
++package org.softserve.edu.models.placeholder;
++
++import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
++import com.fasterxml.jackson.annotation.JsonInclude;
++import com.fasterxml.jackson.annotation.JsonProperty;
++import org.apache.commons.lang3.builder.EqualsBuilder;
++import org.apache.commons.lang3.builder.HashCodeBuilder;
++import org.softserve.edu.models.AbstractDTO;
++
++@JsonIgnoreProperties(ignoreUnknown = false)
++@JsonInclude(JsonInclude.Include.NON_NULL)
++public class UserGeoDTO extends AbstractDTO {
++
++    @JsonProperty("lat")
++    private String street;
++
++    @JsonProperty("lng")
++    private String lng;
++
++    public String getStreet() {
++        return street;
++    }
++
++    public UserGeoDTO setStreet(String street) {
++        this.street = street;
++        return this;
++    }
++
++    public String getLng() {
++        return lng;
++    }
++
++    public UserGeoDTO setLng(String lng) {
++        this.lng = lng;
++        return this;
++    }
++
++    @Override
++    public boolean equals(Object o) {
++        if (this == o) return true;
++
++        if (o == null || getClass() != o.getClass()) return false;
++
++        UserGeoDTO that = (UserGeoDTO) o;
++
++        return new EqualsBuilder()
++                .append(street, that.street)
++                .append(lng, that.lng)
++                .isEquals();
++    }
++
++    @Override
++    public int hashCode() {
++        return new HashCodeBuilder(17, 37)
++                .append(street)
++                .append(lng)
++                .toHashCode();
++    }
++}
+Index: src/main/java/org/softserve/edu/models/placeholder/UserCompanyDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/org/softserve/edu/models/placeholder/UserCompanyDTO.java	(date 1594229160578)
++++ src/main/java/org/softserve/edu/models/placeholder/UserCompanyDTO.java	(date 1594229160578)
+@@ -0,0 +1,66 @@
++package org.softserve.edu.models.placeholder;
++
++import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
++import com.fasterxml.jackson.annotation.JsonInclude;
++import org.apache.commons.lang3.builder.EqualsBuilder;
++import org.apache.commons.lang3.builder.HashCodeBuilder;
++
++@JsonIgnoreProperties(ignoreUnknown = false)
++@JsonInclude(JsonInclude.Include.NON_NULL)
++public class UserCompanyDTO {
++
++    private String name;
++    private String catchPhrase;
++    private String bs;
++
++    public String getName() {
++        return name;
++    }
++
++    public UserCompanyDTO setName(String name) {
++        this.name = name;
++        return this;
++    }
++
++    public String getCatchPhrase() {
++        return catchPhrase;
++    }
++
++    public UserCompanyDTO setCatchPhrase(String catchPhrase) {
++        this.catchPhrase = catchPhrase;
++        return this;
++    }
++
++    public String getBs() {
++        return bs;
++    }
++
++    public UserCompanyDTO setBs(String bs) {
++        this.bs = bs;
++        return this;
++    }
++
++    @Override
++    public boolean equals(Object o) {
++        if (this == o) return true;
++
++        if (o == null || getClass() != o.getClass()) return false;
++
++        UserCompanyDTO that = (UserCompanyDTO) o;
++
++        return new EqualsBuilder()
++                .append(name, that.name)
++                .append(catchPhrase, that.catchPhrase)
++                .append(bs, that.bs)
++                .isEquals();
++    }
++
++    @Override
++    public int hashCode() {
++        return new HashCodeBuilder(17, 37)
++                .append(name)
++                .append(catchPhrase)
++                .append(bs)
++                .toHashCode();
++    }
++}
+Index: src/test/java/org/softserve/edu/testdata/placeholder/APITestUser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/org/softserve/edu/testdata/placeholder/APITestUser.java	(date 1594228068523)
++++ src/test/java/org/softserve/edu/testdata/placeholder/APITestUser.java	(date 1594228068523)
+@@ -0,0 +1,19 @@
++package org.softserve.edu.testdata.placeholder;
++
++import org.softserve.edu.models.placeholder.UserAddressDTO;
++import org.softserve.edu.models.placeholder.UserCompanyDTO;
++import org.softserve.edu.models.placeholder.UserDataDTO;
++
++public class APITestUser {
++
++    public UserDataDTO getAPIUserData(){
++
++        UserDataDTO userDataDTO = new UserDataDTO()
++                .setName("Leanne Graham")
++                .setUsername("Bret")
++                .setAddress(new UserAddressDTO()
++                        .setCity("Gwenborough"));
++
++        return userDataDTO;
++    }
++}
+Index: src/main/java/org/softserve/edu/models/UserDataDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.softserve.edu.models;\n\nimport java.util.Map;\nimport java.util.Objects;\n\npublic class UserDataDTO {\n\n    private String name;\n    private String username;\n    private String email;\n    private Map<String,Object> address;\n    private String phone;\n    private String website;\n    private Map<String,Object> company;\n\n    public UserDataDTO() {\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    public String getUsername() {\n        return username;\n    }\n\n    public void setUsername(String username) {\n        this.username = username;\n    }\n\n    public String getEmail() {\n        return email;\n    }\n\n    public void setEmail(String email) {\n        this.email = email;\n    }\n\n    public Map<String, Object> getAddress() {\n        return address;\n    }\n\n    public void setAddress(Map<String, Object> address) {\n        this.address = address;\n    }\n\n    public String getPhone() {\n        return phone;\n    }\n\n    public void setPhone(String phone) {\n        this.phone = phone;\n    }\n\n    public String getWebsite() {\n        return website;\n    }\n\n    public void setWebsite(String website) {\n        this.website = website;\n    }\n\n    public Map<String, Object> getCompany() {\n        return company;\n    }\n\n    public void setCompany(Map<String, Object> company) {\n        this.company = company;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) return true;\n        if (o == null || getClass() != o.getClass()) return false;\n        UserDataDTO that = (UserDataDTO) o;\n        return name.equals(that.name) &&\n                Objects.equals(username, that.username) &&\n                Objects.equals(email, that.email) &&\n                Objects.equals(address, that.address) &&\n                Objects.equals(phone, that.phone) &&\n                Objects.equals(website, that.website) &&\n                Objects.equals(company, that.company);\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(name, username, email,\n                address, phone, website, company);\n    }\n\n    @Override\n    public String toString() {\n        return \"UserDataDTO{\" +\n                \"name='\" + name + '\\'' +\n                \", username='\" + username + '\\'' +\n                \", email='\" + email + '\\'' +\n                \", address='\" + address + '\\'' +\n                \", phone='\" + phone + '\\'' +\n                \", website='\" + website + '\\'' +\n                \", company='\" + company + '\\'' +\n                '}';\n    }\n}\n
+===================================================================
+--- src/main/java/org/softserve/edu/models/UserDataDTO.java	(revision 110ba05050568623bdda1cbf14693a5e6efa2e9a)
++++ src/main/java/org/softserve/edu/models/placeholder/UserDataDTO.java	(date 1594218394924)
+@@ -1,107 +1,125 @@
+-package org.softserve.edu.models;
++package org.softserve.edu.models.placeholder;
+ 
+-import java.util.Map;
+-import java.util.Objects;
++import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
++import com.fasterxml.jackson.annotation.JsonInclude;
++import org.apache.commons.lang3.builder.EqualsBuilder;
++import org.apache.commons.lang3.builder.HashCodeBuilder;
++import org.softserve.edu.models.AbstractDTO;
+ 
+-public class UserDataDTO {
++@JsonIgnoreProperties(ignoreUnknown = false)
++@JsonInclude(JsonInclude.Include.NON_NULL)
++public class UserDataDTO extends AbstractDTO {
+ 
++    private Integer id;
+     private String name;
+     private String username;
+     private String email;
+-    private Map<String,Object> address;
++    private UserAddressDTO address;
+     private String phone;
+     private String website;
+-    private Map<String,Object> company;
++    private UserCompanyDTO company;
+ 
+-    public UserDataDTO() {
++    public Integer getId() {
++        return id;
++    }
++
++    public UserDataDTO setId(Integer id) {
++        this.id = id;
++        return this;
+     }
+ 
+     public String getName() {
+         return name;
+     }
+ 
+-    public void setName(String name) {
++    public UserDataDTO setName(String name) {
+         this.name = name;
++        return this;
+     }
+ 
+     public String getUsername() {
+         return username;
+     }
+ 
+-    public void setUsername(String username) {
++    public UserDataDTO setUsername(String username) {
+         this.username = username;
++        return this;
+     }
+ 
+     public String getEmail() {
+         return email;
+     }
+ 
+-    public void setEmail(String email) {
++    public UserDataDTO setEmail(String email) {
+         this.email = email;
++        return this;
+     }
+ 
+-    public Map<String, Object> getAddress() {
++    public UserAddressDTO getAddress() {
+         return address;
+     }
+ 
+-    public void setAddress(Map<String, Object> address) {
++    public UserDataDTO setAddress(UserAddressDTO address) {
+         this.address = address;
++        return this;
+     }
+ 
+     public String getPhone() {
+         return phone;
+     }
+ 
+-    public void setPhone(String phone) {
++    public UserDataDTO setPhone(String phone) {
+         this.phone = phone;
++        return this;
+     }
+ 
+     public String getWebsite() {
+         return website;
+     }
+ 
+-    public void setWebsite(String website) {
++    public UserDataDTO setWebsite(String website) {
+         this.website = website;
++        return this;
+     }
+ 
+-    public Map<String, Object> getCompany() {
++    public UserCompanyDTO getCompany() {
+         return company;
+     }
+ 
+-    public void setCompany(Map<String, Object> company) {
++    public UserDataDTO setCompany(UserCompanyDTO company) {
+         this.company = company;
++        return this;
+     }
+ 
+     @Override
+     public boolean equals(Object o) {
+         if (this == o) return true;
++
+         if (o == null || getClass() != o.getClass()) return false;
++
+         UserDataDTO that = (UserDataDTO) o;
+-        return name.equals(that.name) &&
+-                Objects.equals(username, that.username) &&
+-                Objects.equals(email, that.email) &&
+-                Objects.equals(address, that.address) &&
+-                Objects.equals(phone, that.phone) &&
+-                Objects.equals(website, that.website) &&
+-                Objects.equals(company, that.company);
++
++        return new EqualsBuilder()
++                .append(name, that.name)
++                .append(username, that.username)
++                .append(email, that.email)
++                .append(address, that.address)
++                .append(phone, that.phone)
++                .append(website, that.website)
++                .append(company, that.company)
++                .isEquals();
+     }
+ 
+     @Override
+     public int hashCode() {
+-        return Objects.hash(name, username, email,
+-                address, phone, website, company);
+-    }
+-
+-    @Override
+-    public String toString() {
+-        return "UserDataDTO{" +
+-                "name='" + name + '\'' +
+-                ", username='" + username + '\'' +
+-                ", email='" + email + '\'' +
+-                ", address='" + address + '\'' +
+-                ", phone='" + phone + '\'' +
+-                ", website='" + website + '\'' +
+-                ", company='" + company + '\'' +
+-                '}';
++        return new HashCodeBuilder(17, 37)
++                .append(name)
++                .append(username)
++                .append(email)
++                .append(address)
++                .append(phone)
++                .append(website)
++                .append(company)
++                .toHashCode();
+     }
+ }

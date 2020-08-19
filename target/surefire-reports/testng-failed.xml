@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Smoke API testing with Jackson2 and RestAssured]" verbose="0">
+  <test name="UpdateUserDataDTO(failed)">
+    <groups>
+      <run>
+        <include name="PUT requests"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="org.softserve.edu.UpdateUserDataDTO">
+        <methods>
+          <include name="updateUserWithInvalidID"/>
+        </methods>
+      </class> <!-- org.softserve.edu.UpdateUserDataDTO -->
+    </classes>
+  </test> <!-- UpdateUserDataDTO(failed) -->
+</suite> <!-- Failed suite [Smoke API testing with Jackson2 and RestAssured] -->
